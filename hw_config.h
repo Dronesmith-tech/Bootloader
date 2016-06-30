@@ -223,6 +223,46 @@
  * # define BOARD_FORCE_BL_PULL            GPIO_PUPD_PULLUP
  */
 
+/*****************************************************************************
+ * TARGET_HW_LUCI_FMU
+ *****************************************************************************/
+
+#elif  defined(TARGET_HW_LUCI_FMU)
+
+# define APP_LOAD_ADDRESS               0x08004000
+# define BOOTLOADER_DELAY               5000
+# define BOARD_FMUV2
+# define INTERFACE_USB                  1
+# define INTERFACE_USART                1
+# define USBDEVICESTRING                "LUCI BL FMU"
+# define USBPRODUCTID                   0x0042
+# define BOOT_DELAY_ADDRESS             0x000001a0
+
+# define BOARD_TYPE                     42
+# define _FLASH_KBYTES                  (*(uint16_t *)0x1fff7a22)
+# define BOARD_FLASH_SECTORS            ((_FLASH_KBYTES == 0x400) ? 11 : 23)
+# define BOARD_FLASH_SIZE               (_FLASH_KBYTES * 1024)
+
+# define OSC_FREQ                       24
+
+# define BOARD_PIN_LED_ACTIVITY         0               // no activity LED
+# define BOARD_PIN_LED_BOOTLOADER       GPIO12
+# define BOARD_PORT_LEDS                GPIOE
+# define BOARD_CLOCK_LEDS               RCC_AHB1ENR_IOPEEN
+# define BOARD_LED_ON                   gpio_clear
+# define BOARD_LED_OFF                  gpio_set
+
+# define BOARD_USART                    USART6
+# define BOARD_USART_CLOCK_REGISTER     RCC_APB2ENR
+# define BOARD_USART_CLOCK_BIT          RCC_APB2ENR_USART6EN
+
+# define BOARD_PORT_USART                       GPIOC
+# define BOARD_PORT_USART_AF                    GPIO_AF8
+# define BOARD_PIN_TX                           GPIO6
+# define BOARD_PIN_RX                           GPIO7
+# define BOARD_USART_PIN_CLOCK_REGISTER     RCC_AHB1ENR
+# define BOARD_USART_PIN_CLOCK_BIT          RCC_AHB1ENR_IOPCEN
+
 /****************************************************************************
  * TARGET_HW_PX4_FLOW_V1
  ****************************************************************************/

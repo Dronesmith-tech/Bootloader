@@ -96,14 +96,14 @@ typedef struct mcu_rev_t {
 } mcu_rev_t;
 
 /*
- * This table is used in 2 ways. One to look look up the revision 
- * of a given chip. Two to see it a revsion is in the group of "Bad" 
+ * This table is used in 2 ways. One to look look up the revision
+ * of a given chip. Two to see it a revsion is in the group of "Bad"
  * silicon.
- * 
+ *
  * Therefore when adding entries for good silicon rev, they must be inserted
  * at the beginning of the table. The value of FIRST_BAD_SILICON_OFFSET will
  * also need to be increased to that of the value of the first bad silicon offset.
- * 
+ *
  */
 const mcu_rev_t silicon_revs[] = {
 	{MCU_REV_STM32F4_REV_3, '3'}, /* Revision 3 */
@@ -799,7 +799,7 @@ main(void)
 			continue;
 		}
 
-#if INTERFACE_USART
+#if INTERFACE_USART && !defined(TARGET_HW_LUCI_FMU)
 
 		/* if the USART port RX line is still receiving a break, just loop back */
 		if (board_test_usart_receiving_break()) {
